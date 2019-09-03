@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8)
 project(test)
 
 set(ROOT_PATH ${PROJECT_SOURCE_DIR}/../..)
-set(MINIGLOG_LIBS ${ROOT_PATH}/build/lib/libminiglog.so)
+set(MINIGLOG_LIBS ${ROOT_PATH}/build/lib/libminiglog.dylib) #libminiglog.dylib for Mac;libminiglog.so for Linux.
 set(MINIGLOG_INCLUDE_DIRS ${ROOT_PATH}/build/include)
 
 file(GLOB test_dep

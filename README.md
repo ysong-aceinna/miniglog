@@ -1,3 +1,56 @@
+# Learn
+
+## 1. 自动化编译并执行test
+## 1.1 执行python build.py:   
+> 1. 生成 example/test/build/test;   
+> 2. 生成库libminiglog.so(dylib)供test调用;   
+> 3. 执行test，并打印log   
+
+## 1.2 build.py中一些切换目录，执行cmd的语句值得借鉴：     
+```
+    curr = os.getcwd() #get 当前所在位置的全路径   
+    os.chdir(self.path) #切换路径   
+    os.path.exists(build_folder) #判断路径是否存在   
+    shutil.rmtree(build_folder) #删除文件夹   
+    os.mkdir(build_folder)  #新建文件夹   
+    os.sys.exit(1) #退出程序   
+    cmd(cmdlist): #相当于shell中执行列表cmdlist中的一些列命令行。
+```
+
+
+## 2. 用法:
+参考下文的Usage
+
+
+
+
+## 4. 主要修改
+> 1. CMakeLists.txt中，加上了对Mac系统的支持。
+```
+set(MINIGLOG_LIBS ${ROOT_PATH}/build/lib/libminiglog.dylib) #libminiglog.dylib for Mac;libminiglog.so for Linux.
+```
+> 2. 暂时注释掉了pid,tid在log中的显示。
+```
+    //SONG: uncomment below line can print pid, tid in log .
+    // sprintf(tid_cstr, "%d/%u ", pid, tid);
+```
+效果:
+![](demo_my.jpg)
+
+## 3. 其他
+
+```
+  DLOG(INFO) << "of [" << __func__ << "]"; //Log内容为当前的函数名    
+  LOG_IF(ERROR, x > y) << "2 > 1. This should be also OK"; //如果x>y满足，才能打印log   
+```
+
+
+
+
+
+
+********************************************************
+
 # miniglog
 
 [![Build Status](https://travis-ci.org/tzutalin/miniglog.png)](https://travis-ci.org/tzutalin/miniglog)
