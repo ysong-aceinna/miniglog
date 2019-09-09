@@ -1,5 +1,6 @@
 # Learn
-
+Important Note: 
+refer to the description in logging.cc, must run 'python build.py' firstly to generate libminiglog.so, because miniglog should work as a library!
 ## 1. 自动化编译并执行test
 ## 1.1 执行python build.py:   
 > 1. 生成 example/test/build/test;   
