@@ -181,7 +181,7 @@ class CERES_EXPORT MessageLogger {
     : file_(file), line_(line), tag_(tag), severity_(severity) {
     // Pre-pend the stream with the file and line number.
     StripBasename(std::string(file), &filename_only_);
-    stream_ << filename_only_ << ":" << line << " ";
+    stream_ << "[" << filename_only_ << ":" << line << "] ";
   }
 
   // Output the contents of the stream to the proper channel on destruction.
@@ -223,7 +223,7 @@ class CERES_EXPORT MessageLogger {
     char buffer [20];
     strftime(buffer, 80, "[%Y-%m-%d %H:%M:%S", localtime(&curTime.tv_sec));
     char time_cstr[24] = "";
-    sprintf(time_cstr, "%s:%d] ", buffer, milli);
+    sprintf(time_cstr, "%s.%d] ", buffer, milli);
     // Get pid & tid
     char tid_cstr[24] = "";
     //SONG: uncomment below 3 lines can print pid, tid in log .
@@ -232,15 +232,15 @@ class CERES_EXPORT MessageLogger {
     // sprintf(tid_cstr, "%d/%u ", pid, tid);
     if (severity_ == FATAL) {
         // Magenta color if fatal
-        std::cerr << "\033[1;35m"<< tid_cstr << time_cstr << SeverityLabelStr() << stream_.str() << "\033[0m";
+        std::cerr << "\033[1;35m"<< tid_cstr << SeverityLabelStr() << time_cstr << stream_.str() << "\033[0m";
     } else if (severity_ == ERROR) {
         // Red color if error
-        std::cerr << "\033[1;31m"<< tid_cstr << time_cstr << SeverityLabelStr() << stream_.str() << "\033[0m";
+        std::cerr << "\033[1;31m"<< tid_cstr << SeverityLabelStr() << time_cstr << stream_.str() << "\033[0m";
     } else if (severity_ == WARNING) {
         // Yellow color if warning
-        std::cerr << "\033[1;33m"<< tid_cstr << time_cstr << SeverityLabelStr() << stream_.str() << "\033[0m";
+        std::cerr << "\033[1;33m"<< tid_cstr << SeverityLabelStr() << time_cstr << stream_.str() << "\033[0m";
     } else {
-        std::cerr << tid_cstr << time_cstr << SeverityLabelStr() << stream_.str();
+        std::cerr << tid_cstr << SeverityLabelStr() << time_cstr << stream_.str();
     }
 #endif
 

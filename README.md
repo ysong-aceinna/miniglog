@@ -36,7 +36,7 @@ set(MINIGLOG_LIBS ${ROOT_PATH}/build/lib/libminiglog.dylib) #libminiglog.dylib f
     // sprintf(tid_cstr, "%d/%u ", pid, tid);
 ```
 效果:
-![](demo_my.jpg)
+![](demo_my.png)
 
 ## 3. 其他
 
