@@ -232,15 +232,15 @@ class CERES_EXPORT MessageLogger {
     // sprintf(tid_cstr, "%d/%u ", pid, tid);
     if (severity_ == FATAL) {
         // Magenta color if fatal
-        std::cerr << "\033[1;35m"<< tid_cstr << SeverityLabelStr() << time_cstr << stream_.str() << "\033[0m";
+        std::cerr << "\033[1;35m"<< tid_cstr << time_cstr << SeverityLabel() << " " << stream_.str() << "\033[0m";
     } else if (severity_ == ERROR) {
         // Red color if error
-        std::cerr << "\033[1;31m"<< tid_cstr << SeverityLabelStr() << time_cstr << stream_.str() << "\033[0m";
+        std::cerr << "\033[1;31m"<< tid_cstr << time_cstr << SeverityLabel() << " " << stream_.str() << "\033[0m";
     } else if (severity_ == WARNING) {
         // Yellow color if warning
-        std::cerr << "\033[1;33m"<< tid_cstr << SeverityLabelStr() << time_cstr << stream_.str() << "\033[0m";
+        std::cerr << "\033[1;33m"<< tid_cstr << time_cstr << SeverityLabel() << " " << stream_.str() << "\033[0m";
     } else {
-        std::cerr << tid_cstr << SeverityLabelStr() << time_cstr << stream_.str();
+        std::cerr << tid_cstr << time_cstr << SeverityLabel() << " " << stream_.str();
     }
 #endif
 
