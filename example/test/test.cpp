@@ -1,10 +1,16 @@
-#include <glog/logging.h>
 // Add headers for threads
 #include <stdio.h>
 #include <pthread.h>
 #include <string.h>
 #include <sys/types.h>
 #include <unistd.h>
+
+//define NDEBUG can hide DLOG(XX).ADJ_ESTERROR
+//Please note that #include <glog/logging.h> should after this macro.
+#ifndef NDEBUG
+#define NDEBUG
+#endif
+#include <glog/logging.h>
 
 pthread_t newTid;
 

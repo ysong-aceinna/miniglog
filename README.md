@@ -18,14 +18,10 @@ refer to the description in logging.cc, must run 'python build.py' firstly to ge
     cmd(cmdlist): #相当于shell中执行列表cmdlist中的一些列命令行。
 ```
 
-
 ## 2. 用法:
 参考下文的Usage
 
-
-
-
-## 4. 主要修改
+## 3. 主要修改
 > 1. CMakeLists.txt中，加上了对Mac系统的支持。
 ```
 set(MINIGLOG_LIBS ${ROOT_PATH}/build/lib/libminiglog.dylib) #libminiglog.dylib for Mac;libminiglog.so for Linux.
@@ -38,12 +34,21 @@ set(MINIGLOG_LIBS ${ROOT_PATH}/build/lib/libminiglog.dylib) #libminiglog.dylib f
 效果:
 ![](demo_my.png)
 
-## 3. 其他
+## 4. DLOG
 
 ```
   DLOG(INFO) << "of [" << __func__ << "]"; //Log内容为当前的函数名    
   LOG_IF(ERROR, x > y) << "2 > 1. This should be also OK"; //如果x>y满足，才能打印log   
 ```
+
+默认情况下是显示DLG内容的, 关闭DLG显示的方法是在.h前#define NDEBUG:
+```
+  #ifndef NDEBUG
+  #define NDEBUG
+  #endif
+  #include <glog/logging.h>
+```
+
 
 
 
