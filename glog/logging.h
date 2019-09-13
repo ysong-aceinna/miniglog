@@ -220,15 +220,15 @@ class CERES_EXPORT MessageLogger {
     timeval curTime;
     gettimeofday(&curTime, NULL);
     int milli = curTime.tv_usec / 1000;
-    char buffer [20];
-    strftime(buffer, 80, "%m-%d %H:%M:%S", localtime(&curTime.tv_sec));
-    char time_cstr[24] = "";
-    sprintf(time_cstr, "%s:%d ", buffer, milli);
+    char buffer [30];
+    strftime(buffer, 30, "[%Y-%m-%d %H:%M:%S", localtime(&curTime.tv_sec));
+    char time_cstr[30] = "";
+    sprintf(time_cstr, "%s.%d] ", buffer, milli);
     // Get pid & tid
     char tid_cstr[24] = "";
-    pid_t  pid = getpid();
-    pthread_t tid = pthread_self();
-    //SONG: uncomment below line can print pid, tid in log .
+    //SONG: uncomment below 3 lines can print pid, tid in log .
+    // pid_t  pid = getpid();
+    // pthread_t tid = pthread_self();
     // sprintf(tid_cstr, "%d/%u ", pid, tid);
     if (severity_ == FATAL) {
         // Magenta color if fatal

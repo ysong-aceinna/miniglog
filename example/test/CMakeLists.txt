@@ -1,8 +1,12 @@
 cmake_minimum_required(VERSION 2.8)
 project(test)
 
+set(CMAKE_BUILD_TYPE "Release")
+set(CMAKE_CXX_FLAGS "-std=c++11")
+set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -g")
+
 set(ROOT_PATH ${PROJECT_SOURCE_DIR}/../..)
-set(MINIGLOG_LIBS ${ROOT_PATH}/build/lib/libminiglog.dylib) #libminiglog.dylib for Mac;libminiglog.so for Linux.
+set(MINIGLOG_LIBS ${ROOT_PATH}/build/lib/libminiglog.so) #libminiglog.dylib for Mac;libminiglog.so for Linux.
 set(MINIGLOG_INCLUDE_DIRS ${ROOT_PATH}/build/include)
 
 file(GLOB test_dep
